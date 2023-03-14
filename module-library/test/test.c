@@ -1,4 +1,4 @@
-#include ".../src/lib.h"
+#include "../src/lib.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -7,44 +7,45 @@
 
 START_TEST(test_lab05)
 {
-        int test_a = 1;
-        int test_n = 1;
-        int test_i = 200;
-        int test_result = 2000;
-        int actual_result = lab05(test_a,test_n);
-  
-        ck_assert_int_eq(test_result, actual_result);
-				
+    int test_a = 1;
+    int test_n = 1;
+    int test_i = 200;
+    int test_result = 2000;
+    int actual_result = lab05(test_a, test_n);
+
+    ck_assert_int_eq(test_result, actual_result);
 }
+
 END_TEST
 
 START_TEST(test_lab06)
 {
-        int i;
-        int s = 6;
-        for(i=0; i<s-1;i++){
-          int actual = lab06(i);
-         ck_assert_int_eq(actual,expected); 
-          }
+    int i;
+    int s = 6;
+    for(i = 0; i < s - 1; i++) {
+        int actual = lab06(i);
+        ck_assert_int_eq(actual, expected); 
+    }
 }
-  
-END_TEST  
-  
+
+END_TEST
+
 START_TEST(test_lab06_1)
 {
-       int j;
-       int s=6;
-        for ( j  =0;j<s-i-1;j++){
+    int j;
+    int s = 6;
+    for(j = 0; j < s - i - 1; j++) {
         int actual = lab06(j);
-         ck_assert_int_eq(actual,expected); 
-        }
- }
-END_TEST  
-        
-  START_TEST(test_lab06_2)
+        ck_assert_int_eq(actual, expected); 
+    }
+}
+
+END_TEST
+
+START_TEST(test_lab06_2)
 {
-         int j;
-       long int b expected[5]= {24,342,345,234,545,678};
+    int j;
+    long int expected[5] = {24, 342,345,234,545,678};
           if (b[j] > b[j+1]){
             int actual = lab06(b[j,b[j]]+1);
          ck_assert_int_eq(actual, expected[5]);
