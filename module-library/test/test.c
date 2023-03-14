@@ -1,3 +1,4 @@
+
 #include "../src/lib.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +14,7 @@ START_TEST(test_lab05)
     int test_result = 2000;
     int actual_result = lab05(test_a,test_n);
 
-    ck_assert_int_eq(test_result, actual_result);				
+    ck_assert_int_eq(test_result, actual_result);
 }
 END_TEST
 
@@ -21,8 +22,9 @@ START_TEST(test_lab06)
 {
     int i;
     int s = 6;
-    int expected[5] = {24,342,345,234,545,678};
-    for(i=0; i<s-1;i++){
+    int expected[] = {1, 2, 6, 24, 120};
+    
+    for(i = 0; i < s - 1; i++) {
         int actual = lab06(i);
         ck_assert_int_eq(actual, expected[i]); 
     }
@@ -33,23 +35,24 @@ START_TEST(test_lab06_1)
 {
     int j;
     int s = 6;
-    int expected[5] = {24,342,345,234,545,678};
-    for ( j = 0; j < s - 1; j++) {
+    int expected[] = {120, 120, 24, 6, 1};
+    
+    for(j = 0; j < s - i - 1; j++) {
         int actual = lab06(j);
         ck_assert_int_eq(actual, expected[j]); 
     }
 }
 END_TEST  
-
+        
 START_TEST(test_lab06_2)
 {
     int j;
-    long int b[6] = {24,342,345,234,545,678};
-    long int expected[5] = {24,234,342,345,545,678};
-    for ( j = 0; j < 5; j++){
-        if (b[j] > b[j+1]) {
-            int actual = lab06(j);
-            ck_assert_int_eq(actual, expected[j]);
+    long int expected[] = {24, 342, 345, 234, 545, 678};
+    
+    for(j = 0; j < 5; j++) {
+        if (expected[j] > expected[j+1]) {
+            int actual = lab06(expected[j] + 1);
+            ck_assert_int_eq(actual, expected[5]);
         }
     }
 }
@@ -60,35 +63,25 @@ Suite *lab_test_suite(void)
     Suite *s;
     TCase *tc_lab05;
     TCase *tc_lab06;
-
-Suite *lab_test_suite(void)
-{
-    Suite *s;
-    TCase *tc_TCase *tc_lab05;;
-    TCase *tc_lab06;
     
     s = suite_create("lab09");
   
-    tc_lab05; = tcase_create("lab_05");
-    
-    tcase_add_test(tc_clab05, test_lab05);
+    tc_lab05 = tcase_create("lab_05");    
+    tcase_add_test(tc_lab05, test_lab05);
  
-    tc_lab06; = tcase_create("lab_06");
-  
+    tc_lab06 = tcase_create("lab_06");
     tcase_add_test(tc_lab06, test_lab06);
-	  tcase_add_test(tc_lab06, test_lab06_1);
-	  tcase_add_test(tc_lab06, test_lab06_2);
+    tcase_add_test(tc_lab06, test_lab06_1);
+    tcase_add_test(tc_lab06, test_lab06_2);
    
-  
-	 suite_add_tcase(s, tc_lab05);
-	 suite_add_tcase(s, tc_lab06);
+    suite_add_tcase(s, tc_lab05);
+    suite_add_tcase(s, tc_lab06);
     
     return s;
 }
 
 int main(void)
-{
-    
+{    
     int number_failed;
     Suite *s;
     SRunner *sr;
@@ -101,5 +94,4 @@ int main(void)
     srunner_free(sr);
     
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-
 }
